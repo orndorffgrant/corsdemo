@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Money</title>
+  </head>
+  <body>
+    <h1>My Real Bank</h1>
+    <h2>Use this to transfer money:</h2>
+    <label>Recipient</label>
+    <input id="to" />
+    <label>How Much?</label>
+    <input id="howMuch" type="number"/>
+    <button id="transfer">Transfer</button>
+    <script>
+      document.getElementById('transfer').onclick = () => {
+        fetch('http://local4:9001/transfer', {
+          method: 'post',
+          body: JSON.stringify({
+            to: document.getElementById('to').value,
+            howMuch: document.getElementById('howMuch').value,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+      }
+    </script>
+  </body>
+</html>
