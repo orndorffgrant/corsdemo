@@ -10,17 +10,27 @@
     <label>How Much?</label>
     <input id="howMuch" type="number"/>
     <button id="transfer">Transfer</button>
+    <div id="success"></div>
     <script>
+      const to = document.getElementById('to')
+      const howMuch = document.getElementById('howMuch')
       document.getElementById('transfer').onclick = () => {
-        fetch('http://local4:9001/transfer', {
+        fetch('/transfer', {
           method: 'post',
+          credentials: 'include',
           body: JSON.stringify({
-            to: document.getElementById('to').value,
-            howMuch: document.getElementById('howMuch').value,
+            to: to.value,
+            howMuch: howMuch.value,
           }),
           headers: {
             'Content-Type': 'application/json',
           },
+        }).then((res) => {
+          if (res.ok) {
+            to.value = ''
+            howMuch.value = ''
+            document.getElementById('success').innerHTML = '<h3>Success!</h3>'
+          }
         })
       }
     </script>
