@@ -14,7 +14,7 @@ func main() {
 	app := gin.Default()
 	app.LoadHTMLFiles("index.html")
 	app.GET("/", func(c *gin.Context) {
-		c.SetCookie("auth", "supersecretauthenticationcookie", 300, "", "*.myrealbank.com", false, false)
+		c.SetCookie("auth", "supersecretauthenticationcookie", 300, "", "", false, false)
 		c.HTML(200, "index.html", gin.H{})
 	})
 	app.POST("/transfer", func(c *gin.Context) {
