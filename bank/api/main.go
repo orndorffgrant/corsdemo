@@ -13,14 +13,17 @@ type Transfer struct {
 func main() {
 	app := gin.Default()
 	app.LoadHTMLFiles("index.html")
-	app.GET("/", func(c *gin.Context) {
-		c.SetCookie("auth", "supersecretauthenticationcookie", 300, "", "", false, false)
-		c.HTML(200, "index.html", gin.H{})
+	app.OPTIONS("/transfer", func(c *gin.Context) {
+		c.Header("access-control-allow-origin", "www.myrealbank.com")
+		c.Header("access-control-allow-methods", "OPTIONS,POST")
+		c.Header("access-control-allow-headers", "Content-Type,Authorization")
+		c.Header("access-control-allow-credentials", "false")
+		c.Status(200)
 	})
 	app.POST("/transfer", func(c *gin.Context) {
 		var transfer Transfer
-		token, err := c.Cookie("auth")
-		if err != nil || token != "supersecretauthenticationcookie" {
+		token := c.GetHeader("Authorization")
+		if token != "supersecretauthenticationtoken" {
 			log.Println("Unauthorized!")
 			c.Status(401)
 			return

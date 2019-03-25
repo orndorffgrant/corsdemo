@@ -15,7 +15,7 @@
       const to = document.getElementById('to')
       const howMuch = document.getElementById('howMuch')
       document.getElementById('transfer').onclick = () => {
-        fetch('http://www.myrealbank.com/transfer', {
+        fetch('http://api.myrealbank.com/transfer', {
           method: 'post',
           credentials: 'include',
           body: JSON.stringify({
@@ -30,7 +30,11 @@
             to.value = ''
             howMuch.value = ''
             document.getElementById('success').innerHTML = '<h3>Success!</h3>'
+          } else {
+            document.getElementById('success').innerHTML = '<h3>Error!</h3>'
           }
+        }).catch((err) => {
+          document.getElementById('success').innerHTML = '<h3>Error!</h3>'
         })
       }
     </script>
