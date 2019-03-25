@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <head>
     <title>Money</title>
   </head>
@@ -15,7 +15,7 @@
       const to = document.getElementById('to')
       const howMuch = document.getElementById('howMuch')
       document.getElementById('transfer').onclick = () => {
-        fetch('/transfer', {
+        fetch('http://www.myrealbank.com/transfer', {
           method: 'post',
           credentials: 'include',
           body: JSON.stringify({
