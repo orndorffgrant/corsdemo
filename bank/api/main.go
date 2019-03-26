@@ -12,12 +12,10 @@ type Transfer struct {
 
 func main() {
 	app := gin.Default()
-	app.LoadHTMLFiles("index.html")
 	app.OPTIONS("/transfer", func(c *gin.Context) {
-		c.Header("access-control-allow-origin", "www.myrealbank.com")
+		c.Header("access-control-allow-origin", "http://www.myrealbank.com")
 		c.Header("access-control-allow-methods", "OPTIONS,POST")
 		c.Header("access-control-allow-headers", "Content-Type,Authorization")
-		c.Header("access-control-allow-credentials", "false")
 		c.Status(200)
 	})
 	app.POST("/transfer", func(c *gin.Context) {
