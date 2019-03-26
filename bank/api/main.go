@@ -19,6 +19,7 @@ func main() {
 		c.Status(200)
 	})
 	app.POST("/transfer", func(c *gin.Context) {
+		c.Header("access-control-allow-origin", "http://www.myrealbank.com")
 		var transfer Transfer
 		token := c.GetHeader("Authorization")
 		if token != "supersecretauthenticationtoken" {
