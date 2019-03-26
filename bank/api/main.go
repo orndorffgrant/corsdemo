@@ -12,14 +12,14 @@ type Transfer struct {
 
 func main() {
 	app := gin.Default()
-	app.OPTIONS("/transfer", func(c *gin.Context) {
-		c.Header("access-control-allow-origin", "http://www.myrealbank.com")
-		c.Header("access-control-allow-methods", "OPTIONS,POST")
-		c.Header("access-control-allow-headers", "Content-Type,Authorization")
-		c.Status(200)
-	})
+	// app.OPTIONS("/transfer", func(c *gin.Context) {
+	// 	c.Header("access-control-allow-origin", "http://www.myrealbank.com")
+	// 	c.Header("access-control-allow-methods", "OPTIONS,POST")
+	// 	c.Header("access-control-allow-headers", "Content-Type,Authorization")
+	// 	c.Status(200)
+	// })
 	app.POST("/transfer", func(c *gin.Context) {
-		c.Header("access-control-allow-origin", "http://www.myrealbank.com")
+		// c.Header("access-control-allow-origin", "http://www.myrealbank.com")
 		var transfer Transfer
 		token := c.GetHeader("Authorization")
 		if token != "supersecretauthenticationtoken" {
