@@ -17,7 +17,6 @@
       document.getElementById('transfer').onclick = () => {
         fetch('http://api.myrealbank.com/transfer', {
           method: 'post',
-          credentials: 'include',
           body: JSON.stringify({
             to: to.value,
             howMuch: howMuch.value,
